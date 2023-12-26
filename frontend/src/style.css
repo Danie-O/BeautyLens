@@ -1,0 +1,20 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  font-weight: normal;
+  font-family: 'Jacques Francois';
+  color: white;
+}
+
+@media screen and (max-width: 1500px){
+  html {
+      font-size: 85%;
+  }
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
