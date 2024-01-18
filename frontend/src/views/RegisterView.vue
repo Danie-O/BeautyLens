@@ -76,8 +76,8 @@
                                         v-if="!showPassword"
                                         @click="togglePasswordVisibility"
                                         class="p-3 cursor-pointer" 
-                                        src="../assets/icons/privacy-icon.png"
-                                        alt="password-privacy-icon"
+                                        src="../assets/icons/no-privacy-icon.png"
+                                        alt="no-password-privacy-icon"
                                     />
                                     <img
                                         v-else

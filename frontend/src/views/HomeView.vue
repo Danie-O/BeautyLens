@@ -79,7 +79,7 @@
         </div>
       </div> 
 
-      <div class="mt-12 lg:mt-0 border md:flex md:flex-col">
+      <div class="mt-12 lg:mt-0 md:flex md:flex-col">
         <div class="font-normal mt-12 mx-auto p-4">
           <p class="text-center text-4xl underline underline-offset-4 md:no-underline">PRODUCT CATEGORIES</p>
           <div class="mt-8 md:inline-flex md:flex-row gap-10">
