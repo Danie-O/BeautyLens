@@ -1,4 +1,4 @@
-from app import db, login
+from app import db, ma, login
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     past_recommendations = db.relationship('Recommendation', backref='user', lazy='dynamic', cascade='all, delete, delete-orphan')
     # favorites = db.relationship('FavoriteProduct', backref='user', lazy='dynamic', cascade='all, delete, delete-orphan')
     comments = db.relationship('Comment', backref='author', lazy='dynamic', cascade='all, delete, delete-orphan')
+    reviews = db.relationship('Review', backref='reviewer', lazy='dynamic', cascade='all, delete')
     joined_at = db.Column(db.DateTime(), index=True, default=datetime.utcnow)
 
     def set_password(self, password):
@@ -29,18 +30,26 @@ class User(db.Model, UserMixin):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=True, index=True)
     category = db.Column(db.String(64), index=True)
     brand = db.Column(db.String(120), index=True)
-    skintone = db.Column(db.String(120), index=True)
-    skintype = db.Column(db.String(120), index=True)
+    name = db.Column(db.String(120), index=True)
     hex_color = db.Column(db.String(16), index=True)
-    product_url = db.Column(db.String(120), unique=True)
+    skintone = db.Column(db.String(120), index=True)
+    product_url = db.Column(db.String(120))
     price = db.Column(db.Integer, index=True)
+    skintype = db.Column(db.String(120), index=True)
 
     def __repr__(self):
         return '<Product {}>'.format(self.name)
 
+
+class ProductSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'brand', 'name', 'price')
+
+
+product_schema = ProductSchema()
+products_schema = ProductSchema(many = True)
 
 class Recommendation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -75,7 +84,12 @@ class Comment(db.Model):
     posted_at = db.Column(db.DateTime(), index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     blogpost_id = db.Column(db.Integer, db.ForeignKey('blog_post.id'))
-
-    def __repr__(self):
-        return '<BlogPost {}>'.format(self.title)
     
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    review = db.Column(db.String(256))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    posted_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__():
+        return '<Review {}'.format(self.review)
