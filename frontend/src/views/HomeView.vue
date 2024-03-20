@@ -42,8 +42,8 @@
     },
     {
       id: '04',
-      brandName: 'Hegai & Esther',
-      url: '../assets/brand_logos/hegai_and_esther2.png'
+      brandName: 'Trim & Prissy',
+      url: '../assets/brand_logos/trim_and_prissy.png'
     },
     {
       id: '05',
