@@ -1,5 +1,9 @@
 venv
 __pycache__
 
-#databases
+# databases
 *.sqlite
+*.csv
+
+# models for the recommender system
+AI models
